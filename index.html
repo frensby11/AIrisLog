@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airis - IA Minimalista</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #00f7ff;
+            --gradient: linear-gradient(45deg, #00f7ff, #ff00d4);
+            --font-main: 'Space Mono', monospace;
+        }
+        
+        x {
+            color: #000000;
+            font-style: var(--primary);
+        }
+    
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        body {
+            background: var(--primary);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            right: 1rem;
+            top: 1rem;
+            z-index: 1001;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px;
+            background: var(--secondary);
+            transition: 0.3s;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 8rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero {
+            text-align: center;
+        }
+
+        .pi-symbol {
+            font-size: 6rem;
+            margin-bottom: 2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .app-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .app-description {
+            max-width: 800px;
+            margin: 2rem auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .writing-animation {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 1s;
+            overflow: hidden;
+        }
+
+        .writing-animation.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.3s;
+        }
+
+        .char.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+            padding: 2rem;
+        }
+
+        .screenshot {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient);
+            color: var(--secondary);
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 1rem 0;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-btn {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            padding: 1rem;
+            background: var(--gradient);
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0, 247, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 1000;
+            color: white;
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.3s;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .app-title {
+                font-size: 2.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <button class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Características</a>
+            <a href="#download">Descarga</a>
+            <a href="#contact">Contacto</a>
+            <a href="#about">Sobre Mí</a>
+        </div>
+    </nav>
+    <section id="home" class="section hero">
+        <div class="pi-symbol">π</div>
+        <h1 class="app-title writing-animation">Airis</h1>
+        <p class="app-description writing-animation convert-spaces">
+            Interacción con la inteligencia artificial.
+        </p>
+    </section>
+
+    <section id="features" class="section">
+        <h2 class="writing-animation">Características</h2>
+        <div class="feature-grid">
+            <div class="feature-card writing-animation ">
+                <h3>Diseño_Minimalista_</h3>
+                <p>Una_interfaz_limpia_y_elegante_que_te_permite_concentrarte_en_lo_que_importa</p>
+            </div>
+            <div class="feature-card writing-animation ">
+                <h3>Potencia_de_Gemini_</h3>
+                <p>_La_última_tecnología_de_Google_para_respuestas_precisas_e_inteligentes</p>
+            </div>
+            <div class="feature-card writing-animation">
+                <h3>Personalización_Total_</h3>
+                <p>Adapta_cada_aspecto_de_la_app_a_tus_necesidades</p>
+            </div>
+            <div class="feature-card writing-animation ">
+                <h3>Open_Source_</h3>
+                <p>Código_abierto_para_la_comunidad,_por_la_comunidad</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="download" class="section">
+        <h2 class="writing-animation">Descarga_Airis</h2>
+        <p class="writing-animation convert-spaces">Comienza tu viaje con la IA</p>
+        <a href="#" class="btn convert-spaces">Descargar APK</a>
+        <a href="https://github.com/frensby11/AIris.git" target="_blank" class="btn">Ver_en_GitHub</a>
+    </section>
+
+    <section id="contact" class="section">
+        <h2 class="writing-animation">Contacto</h2>
+        <div class="contact-info">
+            <p class="writing-animation">Email:_frensbycharles@gmail.com</p>
+            <p class="writing-animation">Teléfono:_+5350104240</p>
+            <a href="https://wa.me/5350104240" class="btn convert-spaces">Contactar por WhatsApp</a>
+            <p class="writing-animation convert-spaces">Creemos juntos tu próxima app</p>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="writing-animation">Sobre_el_Creador</h2>
+        <p class="app-description writing-animation">
+            Charles_David_Rodríguez_Rojas,_15_años,_Cuba,_Holguín.
+            Programador_autodidacta_con_una_visión_clara:_
+            hacer_la_tecnología_accesible_para_todos.
+        </p>
+        <p class="app-description writing-animation">
+            A_pesar_de_las_limitaciones,_la_pasión_por_la_
+            programación_me_ha_llevado_a_crear_soluciones_
+            innovadoras_como_Airis.
+        </p>
+    </section>
+
+    <a href="#home" class="floating-btn">↑</a>
+
+    <script>
+        function convertSpacesToUnderscores() {
+            document.querySelectorAll('.convert-spaces').forEach(element => {
+                element.textContent = element.textContent.replace(/\s+/g, '_');
+            });
+        }
+        
+        // Ejecutar la función cuando se cargue la página
+        window.addEventListener('load', convertSpacesToUnderscores);
+        
+        //envolver todos los _ en una etiqueta x
+        // Add this function at the beginning of your script section
+        function wrapUnderscoresInXTags() {
+            const bodyText = document.body.innerHTML;
+            const wrappedText = bodyText.replace(/_/g, '<x>_</x>');
+            document.body.innerHTML = wrappedText;
+        }
+
+        // Call the function after the page loads
+        window.addEventListener('load', wrapUnderscoresInXTags);
+
+
+        // Menú móvil
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animación de escritura
+        function splitText() {
+            document.querySelectorAll('.writing-animation').forEach(element => {
+                const text = element.textContent;
+                element.textContent = '';
+                [...text].forEach(char => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = 'char';
+                    element.appendChild(span);
+                });
+            });
+        }
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+        }
+
+        function animateText() {
+            document.querySelectorAll('.writing-animation').forEach(element => {
+                if (isElementInViewport(element) && !element.classList.contains('active')) {
+                    element.classList.add('active');
+                    let delay = 0;
+                    element.querySelectorAll('.char').forEach(char => {
+                        setTimeout(() => {
+                            char.classList.add('visible');
+                        }, delay);
+                        delay += 50;
+                    });
+                }
+            });
+        }
+
+        // Inicializar animaciones
+        splitText();
+        window.addEventListener('scroll', animateText);
+        window.addEventListener('load', animateText);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
