@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /#features
+Allow: /#download
+Allow: /#contact
+Allow: /#about
+
+Sitemap: https://airislog-production.up.railway.app/sitemap.xml
+
+# Optimized for search engines
+Crawl-delay: 10
