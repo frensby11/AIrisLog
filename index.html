@@ -22,10 +22,11 @@
     <meta property="twitter:title" content="Airis - IA Minimalista">
     <meta property="twitter:description" content="Tu asistente de IA personal con tecnología Gemini. Descarga gratuita disponible.">
     <meta property="twitter:image" content="https://airislog-production.up.railway.app/images/airis-preview.jpg">
-
     <!-- Canonical URL -->
     <meta rel="canonical" href="https://airislog-production.up.railway.app/">
-
+    <!-- Instalar AOS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
@@ -341,162 +342,127 @@
 </head>
 <body>
     <nav class="navbar">
-        <button class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#features">Características</a>
-            <a href="#download">Descarga</a>
-            <a href="#contact">Contacto</a>
-            <a href="#about">Sobre Mí</a>
+        <div class="nav-content">
+            <a href="#home" class="logo">AIRIS</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+                <a href="#contact">Contact</a>
+                <a href="#about">About</a>
+            </div>
         </div>
     </nav>
+
     <section id="home" class="section hero">
-        <div class="pi-symbol">π</div>
-        <h1 class="app-title writing-animation">Airis</h1>
-        <p class="app-description writing-animation convert-spaces">
-            Interacción con la inteligencia artificial.
-        </p>
+        <div class="hero-content">
+            <div class="pi-symbol">π</div>
+            <h1 class="app-title animate">Airis</h1>
+            <p class="app-description animate" data-aos="fade-up">Custom AI Applications with Personalized Language Models</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn animate" data-aos="fade-left" data-aos-duration="1000">Get Started</a>
+                <a href="#features" class="btn btn-secondary animate" data-aos="fade-right" data-aos-duration="1000">Learn More</a>
+            </div>
+        </div>
     </section>
 
     <section id="features" class="section">
-        <h2 class="writing-animation">Características</h2>
+        <h2 class="section-title">Our Services</h2>
         <div class="feature-grid">
-            <div class="feature-card writing-animation ">
-                <h3>Diseño_Minimalista_</h3>
-                <p>Una_interfaz_limpia_y_elegante_que_te_permite_concentrarte_en_lo_que_importa</p>
+            <div class="feature-card animate" data-aos="fade-up" data-aos-duration="1000">
+                <h3>Custom AI Apps</h3>
+                <p class="animate">Tailored AI applications designed specifically for your business needs and workflow</p>
             </div>
-            <div class="feature-card writing-animation ">
-                <h3>Potencia_de_Gemini_</h3>
-                <p>_La_última_tecnología_de_Google_para_respuestas_precisas_e_inteligentes</p>
+            <div class="feature-card animate" data-aos="fade-down" data-aos-duration="1000">
+                <h3>Language Model Customization</h3>
+                <p>Personalized AI models trained to understand your industry's specific terminology and requirements</p>
             </div>
-            <div class="feature-card writing-animation">
-                <h3>Personalización_Total_</h3>
-                <p>Adapta_cada_aspecto_de_la_app_a_tus_necesidades</p>
+            <div class="feature-card animate" data-aos="fade-right" data-aos-duration="1000">
+                <h3>Full Integration</h3>
+                <p>Seamless integration with your existing systems and workflows</p>
             </div>
-            <div class="feature-card writing-animation ">
-                <h3>Open_Source_</h3>
-                <p>Código_abierto_para_la_comunidad,_por_la_comunidad</p>
+            <div class="feature-card animate" data-aos="fade-left" data-aos-duration="1000">
+                <h3>Ongoing Support</h3>
+                <p>Continuous technical support and model updates to ensure optimal performance</p>
             </div>
         </div>
     </section>
 
     <section id="download" class="section">
-        <h2 class="writing-animation">Descarga_Airis</h2>
-        <p class="writing-animation convert-spaces">Comienza tu viaje con la IA</p>
-        <a href="https://github.com/user-attachments/files/18257642/Airis.zip" class="btn convert-spaces">Descargar APK</a>
-        <a href="https://github.com/frensby11/AIris.git" target="_blank" class="btn">Ver_en_GitHub</a>
-    </section>
-
-    <section id="contact" class="section">
-        <h2 class="writing-animation">Contacto</h2>
-        <div class="contact-info">
-            <p class="writing-animation">Email:_frensbycharles@gmail.com</p>
-            <p class="writing-animation">Teléfono:_+5350104240</p>
-            <a href="https://wa.me/5350104240" class="btn convert-spaces">Contactar por WhatsApp</a>
-            <p class="writing-animation convert-spaces">Creemos juntos tu próxima app</p>
+        <h2 class="section-title">Start Your AI Journey</h2>
+        <p class="section-description">Get a custom AI solution for your business</p>
+        <div class="download-buttons" data-aos="fade-down" data-aos-duration="1000">
+            <a href="https://median.co/share/jlbykd#apk" class="btn">Install</a>
+            <a href="https://github.com/frensby11/AIris.git" class="btn github-btn">View on GitHub</a>
         </div>
     </section>
 
-    <section id="about" class="section">
-        <h2 class="writing-animation">Sobre_el_Creador</h2>
-        <p class="app-description writing-animation">
-            Charles_David_Rodríguez_Rojas,_15_años,_Cuba,_Holguín.
-            Programador_autodidacta_con_una_visión_clara:_
-            hacer_la_tecnología_accesible_para_todos.
-        </p>
-        <p class="app-description writing-animation">
-            A_pesar_de_las_limitaciones,_la_pasión_por_la_
-            programación_me_ha_llevado_a_crear_soluciones_
-            innovadoras_como_Airis.
-        </p>
+    <section id="contact" class="section" data-aos="fade-left" data-aos-duration="1000">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-info">
+            <p class="email">Email: frensbycharles@gmail.com</p>
+            <p class="phone">Phone: +5350104240</p>
+            <a href="https://wa.me/5350104240" class="btn whatsapp-btn">Contact via WhatsApp</a>
+            <p class="contact-message">Let's discuss your custom AI solution</p>
+        </div>
     </section>
 
-    <a href="#home" class="floating-btn">↑</a>
-
+    <section id="about" class="section" data-aos="fade-top" data-aos-duration="2000">
+        <h2 class="section-title">About the Developer</h2>
+        <div class="about-content">
+            <center>
+                <p class="bio">Made by a student for students.</p>
+            </center>
+            <div></div>
+        </div>
+    </section>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCf5K8eLh4WrJWTbumlb-r5FJhRTpGjkiw",
+          authDomain: "airis-d8213.firebaseapp.com",
+          projectId: "airis-d8213",
+          storageBucket: "airis-d8213.firebasestorage.app",
+          messagingSenderId: "647060510798",
+          appId: "1:647060510798:web:64f8364fc647703a320b1f",
+          measurementId: "G-ZK328EVFP5"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+    </script>
     <script>
-        function convertSpacesToUnderscores() {
-            document.querySelectorAll('.convert-spaces').forEach(element => {
-                element.textContent = element.textContent.replace(/\s+/g, '_');
-            });
-        }
-        
-        // Ejecutar la función cuando se cargue la página
-        window.addEventListener('load', convertSpacesToUnderscores);
-        
-        //envolver todos los _ en una etiqueta x
-        // Add this function at the beginning of your script section
-        function wrapUnderscoresInXTags() {
-            const bodyText = document.body.innerHTML;
-            const wrappedText = bodyText.replace(/_/g, '<x>_</x>');
-            document.body.innerHTML = wrappedText;
-        }
-
-        // Call the function after the page loads
-        window.addEventListener('load', wrapUnderscoresInXTags);
-
-
-        // Menú móvil
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Cerrar menú al hacer click en un enlace
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // Animación de escritura
-        function splitText() {
-            document.querySelectorAll('.writing-animation').forEach(element => {
-                const text = element.textContent;
-                element.textContent = '';
-                [...text].forEach(char => {
-                    const span = document.createElement('span');
-                    span.textContent = char;
-                    span.className = 'char';
-                    element.appendChild(span);
-                });
-            });
-        }
-
-        function isElementInViewport(el) {
-            const rect = el.getBoundingClientRect();
-            return (
-                rect.top >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-            );
-        }
-
-        function animateText() {
-            document.querySelectorAll('.writing-animation').forEach(element => {
-                if (isElementInViewport(element) && !element.classList.contains('active')) {
-                    element.classList.add('active');
-                    let delay = 0;
-                    element.querySelectorAll('.char').forEach(char => {
-                        setTimeout(() => {
-                            char.classList.add('visible');
-                        }, delay);
-                        delay += 50;
-                    });
+        AOS.init()
+        // Observador de intersección para animaciones
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        }
+        }, { threshold: 0.1 });
 
-        // Inicializar animaciones
-        splitText();
-        window.addEventListener('scroll', animateText);
-        window.addEventListener('load', animateText);
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -509,29 +475,4 @@
         });
     </script>
 </body>
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Airis",
-        "applicationCategory": "Artificial Intelligence Assistant",
-        "operatingSystem": "Android",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "author": {
-            "@type": "Person",
-            "name": "Charles David Rodríguez Rojas",
-            "age": "15",
-            "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "Cuba",
-                "addressRegion": "Holguín"
-            }
-        }
-    }
-</script>
-    
-
+</html>
