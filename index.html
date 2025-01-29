@@ -3,486 +3,572 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- SEO Meta Tags -->
-    <title>Airis - Asistente de IA Minimalista | App de Inteligencia Artificial</title>
-    <meta name="description" content="Airis es una aplicación de inteligencia artificial minimalista que utiliza la tecnología Gemini de Google. Desarrollada por Charles David Rodríguez Rojas en Cuba. Descarga gratuita disponible.">
-    <meta name="keywords" content="Airis, inteligencia artificial, IA, Gemini, Google AI, app minimalista, asistente virtual, Cuba, Charles David Rodríguez">
-    <meta name="author" content="Charles David Rodríguez Rojas">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://airislog-production.up.railway.app/">
-    <meta property="og:title" content="Airis - Asistente de IA Minimalista">
-    <meta property="og:description" content="Descubre Airis, tu asistente de IA personal con tecnología Gemini de Google. Interfaz minimalista y código abierto.">
-    <meta property="og:image" content="https://airislog-production.up.railway.app/images/airis-preview.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://airislog-production.up.railway.app/">
-    <meta property="twitter:title" content="Airis - IA Minimalista">
-    <meta property="twitter:description" content="Tu asistente de IA personal con tecnología Gemini. Descarga gratuita disponible.">
-    <meta property="twitter:image" content="https://airislog-production.up.railway.app/images/airis-preview.jpg">
-    <!-- Canonical URL -->
-    <meta rel="canonical" href="https://airislog-production.up.railway.app/">
-    <!-- Instalar AOS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <title>Airis - Tu Asistente de IA Personal | App de Inteligencia Artificial</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
         :root {
-            --primary: #000000;
-            --secondary: #ffffff;
-            --accent: #00f7ff;
-            --gradient: linear-gradient(45deg, #00f7ff, #ff00d4);
-            --font-main: 'Space Mono', monospace;
+            --bg-primary: #0a0a0f;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent: #3b82f6;
+            --card-border: rgba(255, 255, 255, 0.1);
         }
-        
-        x {
-            color: #000000;
-            font-style: var(--primary);
-        }
-    
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: var(--font-main);
         }
 
         body {
-            background: var(--primary);
-            color: var(--secondary);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            min-height: 100vh;
         }
 
-        .navbar {
+        .glass-nav {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--card-border);
             position: fixed;
             width: 100%;
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
         }
 
         .nav-links {
             display: flex;
-            justify-content: center;
-            gap: 3rem;
+            gap: 2rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         .nav-links a {
-            color: var(--secondary);
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.1rem;
-            position: relative;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .menu-toggle {
-            display: none;
-            position: fixed;
-            right: 1rem;
-            top: 1rem;
-            z-index: 1001;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px;
-            background: var(--secondary);
-            transition: 0.3s;
-        }
-
-        .section {
-            min-height: 100vh;
-            padding: 8rem 2rem 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
+        .nav-links a:hover {
+            color: var(--accent);
         }
 
         .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 80px 1rem 2rem 1rem;
         }
 
-        .pi-symbol {
-            font-size: 6rem;
-            margin-bottom: 2rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .app-title {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .app-description {
-            max-width: 800px;
-            margin: 2rem auto;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        .writing-animation {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 1s;
-            overflow: hidden;
-        }
-
-        .writing-animation.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .char {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.3s;
-        }
-
-        .char.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .screenshots {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin: 4rem 0;
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
             padding: 2rem;
-        }
-
-        .screenshot {
-            position: relative;
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
             width: 100%;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            overflow: hidden;
-            transition: transform 0.3s;
+            max-width: 90%;
         }
 
-        .screenshot:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section {
+            padding: 4rem 1rem;
         }
 
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-            width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--gradient);
-            color: var(--secondary);
-            text-decoration: none;
-            border-radius: 30px;
-            margin: 1rem 0;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .gradient-text {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             font-weight: bold;
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
 
-        .btn:hover::before {
-            left: 100%;
+        .section-description {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            border: 1px solid var(--card-border);
         }
 
         .contact-info {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 20px;
-            margin: 2rem 0;
-            animation: pulse 2s infinite;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
 
-        .floating-btn {
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .mobile-nav {
+            display: none;
             position: fixed;
-            right: 2rem;
-            bottom: 2rem;
-            padding: 1rem;
-            background: var(--gradient);
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(0, 247, 255, 0.3);
-            cursor: pointer;
-            transition: transform 0.3s;
-            z-index: 1000;
-            color: white;
-            text-decoration: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            padding: 2rem;
+            z-index: 999;
         }
 
-        .floating-btn:hover {
-            transform: scale(1.1) rotate(360deg);
+        .mobile-nav.active {
+            display: block;
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
                 display: block;
             }
 
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.95);
-                flex-direction: column;
-                justify-content: center;
-                transition: 0.3s;
+            .glass-card {
+                padding: 1.5rem;
+                margin: 0 auto 1.5rem auto;
             }
 
-            .nav-links.active {
-                right: 0;
-            }
-
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-
-            .app-title {
-                font-size: 2.5rem;
+            .section {
+                padding: 3rem 1rem;
             }
 
             .feature-grid {
                 grid-template-columns: 1fr;
             }
+
+            .app-title {
+                font-size: 2.5rem !important;
+            }
+
+            .app-description {
+                font-size: 1.1rem !important;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .pi-symbol {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        .app-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .app-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .feature-card-content {
+            text-align: left;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--bg-primary);
+            padding: 2rem;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: linear-gradient(135deg, 
+                rgba(10, 10, 15, 0.97),
+                rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(10px);
+        }
+        
+        .mobile-nav.active {
+            display: block;
+            opacity: 1;
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .mobile-nav a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav.active a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animar cada enlace con un retraso diferente */
+        .mobile-nav.active a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-nav.active a:nth-child(2) { transition-delay: 0.2s; }
+        .mobile-nav.active a:nth-child(3) { transition-delay: 0.3s; }
+        .mobile-nav.active a:nth-child(4) { transition-delay: 0.4s; }
+        .mobile-nav.active a:nth-child(5) { transition-delay: 0.5s; }
+        
+        /* Efecto hover en los enlaces */
+        .mobile-nav a:hover {
+            color: var(--accent);
+            transform: translateX(10px);
+            background: linear-gradient(90deg, 
+                rgba(59, 130, 246, 0.1),
+                transparent);
+            border-radius: 0.5rem;
+        }
+        
+        .mobile-menu-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: rotate(180deg);
+            color: var(--accent);
+        }
+        
+        /* Animación para el cierre del menú */
+        .mobile-nav.closing {
+            animation: slideOut 0.4s ease-out;
+        }
+        
+        @keyframes slideOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100%);
+            }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="glass-nav">
         <div class="nav-content">
-            <a href="#home" class="logo">AIRIS</a>
+            <a href="#home" class="gradient-text" style="text-decoration: none; font-size: 1.5rem;">AIRIS</a>
+            <button class="mobile-menu-btn">☰</button>
             <div class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#features">Features</a>
-                <a href="#download">Download</a>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
+                <a href="#home">Inicio</a>
+                <a href="#features">Servicios</a>
+                <a href="#download">Descargar</a>
+                <a href="#contact">Contacto</a>
+                <a href="#about">Nosotros</a>
             </div>
         </div>
     </nav>
 
-    <section id="home" class="section hero">
-        <div class="hero-content">
+    <div class="mobile-nav">
+        <a href="#home">Inicio</a>
+        <a href="#features">Servicios</a>
+        <a href="#download">Descargar</a>
+        <a href="#contact">Contacto</a>
+        <a href="#about">Nosotros</a>
+    </div>
+
+    <section id="home" class="hero">
+        <div class="glass-card" data-aos="fade-up">
             <div class="pi-symbol">π</div>
-            <h1 class="app-title animate">Airis</h1>
-            <p class="app-description animate" data-aos="fade-up">Custom AI Applications with Personalized Language Models</p>
+            <h1 class="app-title gradient-text">Airis</h1>
+            <p class="app-description">Tu asistente de IA personal, potenciado por tecnología de vanguardia para hacer tu vida más fácil</p>
             <div class="cta-buttons">
-                <a href="#download" class="btn animate" data-aos="fade-left" data-aos-duration="1000">Get Started</a>
-                <a href="#features" class="btn btn-secondary animate" data-aos="fade-right" data-aos-duration="1000">Learn More</a>
+                <a href="#download" class="btn" data-aos="fade-right">Descargar App</a>
+                <a href="#features" class="btn btn-secondary" data-aos="fade-left">Conocer Más</a>
             </div>
         </div>
     </section>
 
     <section id="features" class="section">
-        <h2 class="section-title">Our Services</h2>
+        <h2 class="section-title gradient-text">Nuestros Servicios</h2>
+        <p class="section-description">Descubre cómo Airis puede transformar tu forma de trabajar y estudiar</p>
+        
         <div class="feature-grid">
-            <div class="feature-card animate" data-aos="fade-up" data-aos-duration="1000">
-                <h3>Custom AI Apps</h3>
-                <p class="animate">Tailored AI applications designed specifically for your business needs and workflow</p>
+            <div class="glass-card" data-aos="fade-up">
+                <div class="feature-card-content">
+                    <h3 class="feature-title">Asistente Personal IA</h3>
+                    <p>Chat inteligente 24/7 para resolver dudas, generar ideas y ayudarte en tus tareas diarias. Perfecto para estudiantes y profesionales.</p>
+                </div>
             </div>
-            <div class="feature-card animate" data-aos="fade-down" data-aos-duration="1000">
-                <h3>Language Model Customization</h3>
-                <p>Personalized AI models trained to understand your industry's specific terminology and requirements</p>
+
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card-content">
+                    <h3 class="feature-title">Soluciones Empresariales</h3>
+                    <p>Automatiza procesos, analiza datos y mejora la productividad de tu empresa con nuestras soluciones de IA personalizadas.</p>
+                </div>
             </div>
-            <div class="feature-card animate" data-aos="fade-right" data-aos-duration="1000">
-                <h3>Full Integration</h3>
-                <p>Seamless integration with your existing systems and workflows</p>
+
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card-content">
+                    <h3 class="feature-title">Educación Inteligente</h3>
+                    <p>Aprende de forma más efectiva con un tutor virtual que se adapta a tu estilo de aprendizaje y te ayuda a comprender mejor cada tema.</p>
+                </div>
             </div>
-            <div class="feature-card animate" data-aos="fade-left" data-aos-duration="1000">
-                <h3>Ongoing Support</h3>
-                <p>Continuous technical support and model updates to ensure optimal performance</p>
+
+            <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-card-content">
+                    <h3 class="feature-title">Soporte Continuo</h3>
+                    <p>Actualizaciones regulares, soporte técnico y mejoras constantes para mantener tu experiencia siempre optimizada.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="download" class="section">
-        <h2 class="section-title">Start Your AI Journey</h2>
-        <p class="section-description">Get a custom AI solution for your business</p>
-        <p>
-            If you encounter this message, you can proceed with one of the following options:
-        </p>
-        <ul>
-            <li>
-                <strong>Option 1:</strong> Tap on <em>'More details'</em> and proceed to install the app without analyzing it.
-            </li>
-            <li>
-                <strong>Option 2:</strong> Tap on <em>'Analyze app'</em> and proceed with the installation. If an error occurs during the analysis, I recommend opting for the first option.
-            </li>
-        </ul>
-        <div class="download-buttons" data-aos="fade-down" data-aos-duration="1000">
-            <a href="https://median.co/share/jlbykd#apk" class="btn">Install</a>
-            <a href="https://github.com/frensby11/AIris.git" class="btn github-btn">View on GitHub</a>
+        <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title gradient-text">Descarga Airis Ahora</h2>
+            <p class="section-description">Únete a miles de usuarios que ya están potenciando su productividad con Airis</p>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Usuarios Activos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4.8/5</div>
+                    <div class="stat-label">Valoración Media</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Disponibilidad</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://median.co/share/jlbykd#apk" class="btn" data-aos="fade-up">Descargar App</a>
+                <a href="https://github.com/frensby11/AIris.git" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="100">Ver en GitHub</a>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="section" data-aos="fade-left" data-aos-duration="1000">
-        <h2 class="section-title">Contact Us</h2>
-        <div class="contact-info">
+    <section id="contact" class="section">
+        <div class="glass-card contact-info" data-aos="fade-up">
+            <h2 class="section-title gradient-text">Contáctanos</h2>
+            <p class="section-description">¿Tienes preguntas o necesitas ayuda? Estamos aquí para asistirte</p>
             <p class="email">Email: frensbycharles@gmail.com</p>
-            <p class="phone">Phone: +5350104240</p>
-            <a href="https://wa.me/5350104240" class="btn whatsapp-btn">Contact via WhatsApp</a>
-            <p class="contact-message">Let's discuss your custom AI solution</p>
+            <p class="phone">Teléfono: +5350104240</p>
+            <a href="https://wa.me/5350104240" class="btn" style="display: inline-block; margin-top: 1rem;">Contactar por WhatsApp</a>
         </div>
     </section>
 
-    <section id="about" class="section" data-aos="fade-top" data-aos-duration="2000">
-        <h2 class="section-title">About the Developer</h2>
-        <div class="about-content">
-            <center>
-                <p class="bio">Made by a student for students.</p>
-            </center>
-            <div></div>
-        </div>
-    </section>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyCf5K8eLh4WrJWTbumlb-r5FJhRTpGjkiw",
-          authDomain: "airis-d8213.firebaseapp.com",
-          projectId: "airis-d8213",
-          storageBucket: "airis-d8213.firebasestorage.app",
-          messagingSenderId: "647060510798",
-          appId: "1:647060510798:web:64f8364fc647703a320b1f",
-          measurementId: "G-ZK328EVFP5"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init()
-        // Observador de intersección para animaciones
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
         });
-
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+            
+        // Función para abrir el menú
+        function openMobileMenu() {
+            mobileNav.classList.remove('closing');
+            mobileNav.classList.add('active');
+            mobileMenuBtn.textContent = '✕';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
+        }
+        
+        // Función para cerrar el menú
+        function closeMobileMenu() {
+            mobileNav.classList.add('closing');
+            mobileMenuBtn.textContent = '☰';
+            document.body.style.overflow = ''; // Restaurar scroll
+            
+            // Esperar a que termine la animación antes de ocultar el menú
+            setTimeout(() => {
+                mobileNav.classList.remove('active', 'closing');
+            }, 400);
+        }
+        
+        // Toggle del menú
+        mobileMenuBtn.addEventListener('click', () => {
+            if (mobileNav.classList.contains('active')) {
+                closeMobileMenu();
             } else {
-                navbar.classList.remove('scrolled');
+                openMobileMenu();
             }
         });
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        
+        // Cerrar el menú cuando se hace clic en un enlace
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Cerrar el menú cuando se hace clic fuera de él
+        document.addEventListener('click', (e) => {
+            if (!mobileNav.contains(e.target) && !mobileMenuBtn.contains(e.target) && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Cerrar el menú con la tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
